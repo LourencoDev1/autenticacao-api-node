@@ -1,17 +1,14 @@
+require('dotenv').config();
 const express = require('express');
-const db = require ('./database');
+const authRoutes = require('./src/routes/auth.routes');
 
 const app = express();
-
 app.use(express.json());
 
-app.get ('/', (req, res) => {
-    res.send ({mensagem:'SERVIDOR RODANDO, MEU CARO!'});
-});
 
-const PORT = 3000;
+app.use(authRoutes);
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
-

@@ -1,6 +1,6 @@
 # API de Autenticação
 
-Esta é uma API RESTful de autenticação construída com Node.js, Express e SQLite
+API RESTful de autenticação construída com Node.js, Express e SQLite
 
 ## Tecnologias Utilizadas
 - Node.js & Express

@@ -33,17 +33,20 @@ Esta é uma API RESTful de autenticação construída com Node.js, Express e SQL
   - Rota: POST /login
   - Body:
 
+```
 {
   "email": "usuario@email.com",
   "senha": "123"
 }
-
+```
 Retorno: Devolve um Token JWT em caso de sucesso.
 
 ### 3. Acessar Perfil (Rota Protegida)
 
 Rota: GET /perfil
+```
+Headers: Authorization: Bearer <token>
 
-Headers: Authorization: Bearer <token_aqui>
+```
 
 Retorno: Devolve os dados do usuário logado se o token for válido.

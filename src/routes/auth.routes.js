@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/registro', async (req, res) => {
   const { nome, email, senha } = req.body;
 
-  
+  //Validação de campos obrigatórios
   if (!nome || !email || !senha) {
     return res.status(400).json({ erro: 'Nome, email e senha são obrigatórios.' });
   }
@@ -43,6 +43,7 @@ router.post('/registro', async (req, res) => {
 router.post('/login', async (req, res) => {
   const { email, senha} = req.body;
 
+  //Validação de campos obrigatórios
   if (!email || !senha) {
     return res.status(400).json({ erro: 'Email e senha são obrigatórios.' });
   }

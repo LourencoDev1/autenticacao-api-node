@@ -1,30 +1,28 @@
 const jwt = require('jsonwebtoken');
 
-function verificarToken (req, res, next) {
+function verificarToken(req, res, next) {
     const authHeader = req.headers['authorization'];
 
     if (!authHeader) {
         return res.status(401).json({ erro: 'Acesso negado. Token não fornecido' });
     }
-}
 
-const token = authHeader.split(' ')[1];
+    const token = authHeader.split(' ')[1];
 
-if (!token) {
-    return res.status(401).json({ erro: 'Acesso negado. TOken mal formatado' });
-}
+    if (!token) {
+        return res.status(401).json({ erro: 'Acesso negado. Token mal formatado' });
+    }
 
-try {
-    const dadosDecodificados = jwt.verify(token, process.env.JWT_SECRET);
+    try {
+        const dadosDecodificados = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.usuarioLogado = dadosDecodificados;
+        req.usuarioLogado = dadosDecodificados;
 
-    next();
+        next();
 
-} catch (erro) {
-    return res.status(403).json({ erro: 'Token inválido ou expirado' });
-}
-
-
+    } catch (erro) {
+        return res.status(403).json({ erro: 'Token inválido ou expirado' });
+    }
+} 
 
 module.exports = verificarToken;

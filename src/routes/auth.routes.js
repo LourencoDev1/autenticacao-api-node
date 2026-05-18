@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../database'); 
+const verificarToken = require('../middlewares/auth.middleware');
 
 const router = express.Router();
 
@@ -75,5 +76,20 @@ const token = jwt.sign(
     res.status(500).json({ erro: 'Erro interno no servidor.' });
   }
 });
+
+
+router.get('/perfil', verificarToken, (req, res) => {
+  
+  
+  const dadosDoUsuario = req.usuarioLogado;
+
+  
+  res.status(200).json({
+    mensagem: 'Bem-vindo(a)!',
+    perfil: dadosDoUsuario
+  });
+});
+
+
 
 module.exports = router;
